@@ -1,0 +1,20 @@
+# PostgreSQL local para desarrollo:  docker compose up -d
+# (en producción se usa Neon; este contenedor solo evita depender de internet al programar)
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: siarf
+      POSTGRES_PASSWORD: siarf
+      POSTGRES_DB: siarf
+    ports:
+      - "5432:5432"
+    volumes:
+      - siarf-datos:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U siarf"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  siarf-datos:

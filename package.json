@@ -1,0 +1,28 @@
+{
+  "name": "siarf",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sistema Inteligente de Atención Rápida y Simulación de Flujo Paciente-Médico",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  },
+  "scripts": {
+    "dev:api": "npm run dev -w @siarf/api",
+    "dev:web": "npm run dev -w @siarf/web",
+    "migrate": "npm run migrate -w @siarf/api",
+    "seed": "npm run seed -w @siarf/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "build": "npm run build -w @siarf/api && npm run build -w @siarf/web"
+  }
+}

@@ -1,0 +1,30 @@
+# Blueprint de Render para el backend (New → Blueprint, apuntando a este repositorio).
+# También puede crearse a mano como "Web Service" con los mismos comandos.
+services:
+  - type: web
+    name: siarf-api
+    runtime: node
+    plan: free
+    # Se instala todo el monorepo (las dependencias de desarrollo incluyen tsup, necesario para compilar).
+    buildCommand: npm install --include=dev && npm run build -w @siarf/api
+    startCommand: npm run start -w @siarf/api
+    healthCheckPath: /salud
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false # pegar la cadena de conexión de Neon (con ?sslmode=require)
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false # la URL de Vercel, p. ej. https://siarf.vercel.app
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: AUTO_MIGRATE
+        value: "true"
+      - key: AUTO_SEED
+        value: "true"
