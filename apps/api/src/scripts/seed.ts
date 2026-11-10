@@ -1,3 +1,4 @@
+import '../cargar-env';
 import { cargarConfig } from '../config';
 import { crearDbPg } from '../db/cliente';
 import { sembrarDatos } from '../db/seed';

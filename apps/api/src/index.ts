@@ -1,3 +1,4 @@
+import './cargar-env';
 import { crearApp } from './app';
 import { cargarConfig } from './config';
 import { crearDbPg } from './db/cliente';
